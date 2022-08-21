@@ -1,0 +1,48 @@
+.dictionary-cards-parent{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap:.3rem;
+    padding: .5rem 4rem;
+}
+.Dictionary-card{
+    padding: 1rem;
+    background-color:#f5f5f5;
+    color: rgb(6, 6, 6);
+    display: flex;
+    /* justify-content: center; */
+    align-items: flex-start;
+    flex-direction: column;
+    gap:.5rem;
+    width: 33%;
+    height: 8rem;
+}
+.Dictionary-card>div>h1{
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+.Dictionary-card-date{
+    color: #959595;
+    font-size: .8rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap:.3rem
+}
+@media only screen and (max-width: 600px) {
+    .dictionary-cards-parent{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: wrap;
+        gap:.3rem;
+        padding: .5rem 1rem;
+    }
+    .Dictionary-card{
+
+        gap:.5rem;
+        width: 100vw;
+        height: auto;
+    }
+}

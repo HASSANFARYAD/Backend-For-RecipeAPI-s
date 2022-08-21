@@ -1,0 +1,45 @@
+.about-page{
+    display: flex;
+    flex-direction: row;
+    padding: 4rem 4rem 3rem 5rem;
+    gap:3rem;
+
+}
+.about-des{
+    flex: 1;
+}
+.about-des>h1{
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+ 
+}
+.about-des>p{
+    font-size: 1rem;
+    line-height: 1.8rem;
+
+    letter-spacing: 0;
+}
+.about-des>ul{
+    margin: 1rem;
+
+}
+.about-des>ul>li{
+    font-size: 1rem;
+    line-height: 1.8rem;
+    letter-spacing: 0;  
+    list-style: square;
+}
+.about-img{
+    flex: 1;
+}
+.about-img>img{
+    width: 100%;
+}
+
+@media only screen and (max-width: 900px) {
+    .about-page{
+        flex-direction: column;
+        padding: 2rem 2rem 2rem 2rem;
+
+    }
+}
