@@ -85,14 +85,10 @@ db.once("open", () => {
   // In your server-side code
   app.get("/api/getRecipesById", async (req, res) => {
     const { id } = req.query;
-    console.log("findRecipes", id);
 
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(400).json({ error: "Invalid ID" });
-    }
     try {
       // Fetch the recipe by ID
-      const findRecipes = await Recipes.findOne({
+      const findRecipes = await Recipes.find({
         recipe_id: id,
       });
 
