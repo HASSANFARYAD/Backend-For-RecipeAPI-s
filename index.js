@@ -35,8 +35,8 @@ db.once("open", () => {
   //   const skip = (page - 1) * pageSize;
 
   //   try {
-  //     const cursor = Recipes.find().skip(skip).limit(pageSize);
-  //     const recipes = await cursor.toArray();
+  //     const findRecipes = Recipes.find().skip(skip).limit(pageSize);
+  //     const recipes = await findRecipes.toArray();
   //     res.json(recipes);
   //   } catch (error) {
   //     console.error(error);
@@ -61,13 +61,13 @@ db.once("open", () => {
       });
       const pageCount = Math.ceil(totalRecipes / pageSize);
 
-      const cursor = await Recipes.find({
+      const findRecipes = await Recipes.find({
         title: { $regex: new RegExp(searchTerm, "i") },
       })
         .skip(skip)
         .limit(pageSize);
 
-      const recipes = await cursor.toArray();
+      const recipes = await findRecipes.toArray();
       res.json({
         recipes,
         pageCount,
@@ -87,10 +87,10 @@ db.once("open", () => {
     const { id } = req.query;
     try {
       // Fetch the recipe by ID
-      const cursor = await Recipes.find({
+      const findRecipes = await Recipes.find({
         id: id,
       });
-      const recipe = await cursor.toArray();
+      const recipe = await findRecipes.toArray();
 
       if (!recipe) {
         return res.status(404).json({ error: "Recipe not found" });
