@@ -93,7 +93,7 @@ db.once("open", () => {
     try {
       // Fetch the recipe by ID
       const findRecipes = await Recipes.findOne({
-        _id: id,
+        recipe_id: id,
       });
 
       if (!findRecipes) {
