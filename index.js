@@ -104,6 +104,8 @@ db.once("open", () => {
     }
   });
 
+  app.use(express.static("public"));
+
   // Include the IpCollector middleware
   app.use(ipCollectorMiddleware);
 
