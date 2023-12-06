@@ -2,7 +2,7 @@
 
 const express = require("express");
 const cors = require("cors");
-const mongoose = require("mongoose");
+const { mongoose, ObjectId } = require("mongoose");
 const ipCollectorMiddleware = require("./IpCollector"); // Import the middleware
 
 const app = express();
@@ -26,7 +26,7 @@ db.once("open", () => {
   console.log("Connected to MongoDB");
 
   // Access the existing Recipes collection directly
-  const Recipes = mongoose.connection.db.collection("Recipes");
+  const Recipes = mongoose.connection.db.collection("recipes");
 
   // Define a route to get the list of recipes
   // app.get("/api/recipes", async (req, res) => {
@@ -85,18 +85,23 @@ db.once("open", () => {
   // In your server-side code
   app.get("/api/getRecipesById", async (req, res) => {
     const { id } = req.query;
+    console.log("findRecipes", id);
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ error: "Invalid ID" });
+    }
     try {
       // Fetch the recipe by ID
-      const findRecipes = await Recipes.find({
-        id: id,
+      const findRecipes = await Recipes.findOne({
+        _id: id,
       });
-      const recipe = await findRecipes.toArray();
 
-      if (!recipe) {
+      if (!findRecipes) {
         return res.status(404).json({ error: "Recipe not found" });
       }
 
       // Send the recipe as JSON
+      const recipe = await findRecipes.toArray();
       res.json(recipe);
     } catch (error) {
       console.error(error);
